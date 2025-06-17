@@ -280,16 +280,26 @@ $buttonExecute_Gerenciar.Add_Click({
                 
                 # --- INÍCIO DA ALTERAÇÃO ---
                 
-                # 1. Criar a mensagem para a área de transferência
-                $clipboardMessage = "A senha do colaborador(a) $($user.Name) foi redefinida. Nova senha temporária: $newPassword"
+                # 1. Definir um array com os formatos de mensagem. {0} é o nome, {1} é a senha.
+                $messageFormats = @(
+                    "A senha do colaborador(a) {0} foi redefinida. Nova senha temporária: {1}",
+                    "Pronto! A nova senha para o acesso de {0} é: {1}",
+                    "Senha resetada para o usuário {0}. A nova senha provisória é: {1}",
+                    "Acesso de {0} atualizado. A senha temporária para o próximo login é: {1}",
+                    "Sucesso! A nova senha de {0} é: {1}. O usuário deverá alterá-la no primeiro acesso."
+                )
+
+                # 2. Escolher um formato aleatoriamente
+                $randomFormat = Get-Random -InputObject $messageFormats
                 
-                # 2. Criar a mensagem para a caixa de diálogo, informando que o texto foi copiado
-                $dialogMessage = "Senha redefinida com sucesso!`n`n$($clipboardMessage)`n`n(A mensagem acima foi copiada para a área de transferência)"
+                # 3. Criar a mensagem final usando o formato escolhido
+                $clipboardMessage = $randomFormat -f $user.Name, $newPassword
+
+                # 4. Criar a mensagem para a caixa de diálogo
+                $dialogMessage = "Senha redefinida com sucesso!`n`n$clipboardMessage`n`n(A mensagem acima foi copiada para a área de transferência)"
                 
-                # 3. Exibir a caixa de diálogo
+                # 5. Exibir a caixa de diálogo e copiar para a área de transferência
                 [System.Windows.Forms.MessageBox]::Show($dialogMessage, "Senha Redefinida", "OK", "Information")
-                
-                # 4. Copiar a mensagem completa para a área de transferência
                 Set-Clipboard -Value $clipboardMessage
 
                 # --- FIM DA ALTERAÇÃO ---
