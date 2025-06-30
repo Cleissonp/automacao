@@ -282,11 +282,21 @@ $buttonExecute_Gerenciar.Add_Click({
                 
                 # 1. Definir um array com os formatos de mensagem. {0} é o nome, {1} é a senha.
                 $messageFormats = @(
-                    "A senha do colaborador(a) {0} foi redefinida. Nova senha temporária: {1}",
+                    "A senha do colaborador(a) {0} foi resetada. Nova senha temporária: {1}",
                     "Pronto! A nova senha para o acesso de {0} é: {1}",
                     "Senha resetada para o usuário {0}. A nova senha provisória é: {1}",
                     "Acesso de {0} atualizado. A senha temporária para o próximo login é: {1}",
-                    "Sucesso! A nova senha de {0} é: {1}. O usuário deverá alterá-la no primeiro acesso."
+                    "Sucesso! A nova senha de {0} é: {1}. O usuário deverá alterá-la no primeiro acesso.",
+                    "A redefinição de senha para o colaborador(a) {0} foi concluída. A senha provisória é: {1}.",
+                    "Credencial de acesso para {0} atualizada com sucesso. Nova senha temporária: {1}.",
+                    "Conforme solicitado, a senha do usuário {0} foi resetada. A nova senha é: {1}.",
+                    "Operação concluída. A nova senha temporária para {0} foi definida como: {1}.",
+                    "O acesso do usuário {0} foi normalizado. A senha provisória para o próximo login é: {1}.",
+                    "Usuário {0}, nova senha: {1}.",
+                    "Senha de {0} redefinida. Temporária: {1}.",
+                    "Acesso liberado para {0}. Senha provisória: {1}.",
+                    "Credencial atualizada para {0}. Nova senha: {1}.",
+                    "Reset de senha para {0} efetuado. Senha: {1}."
                 )
 
                 # 2. Escolher um formato aleatoriamente
