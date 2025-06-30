@@ -334,7 +334,8 @@ $buttonExecute_Gerenciar.Add_Click({
 
                 if ($confirm -eq 'Yes') {
                     Remove-ADUser -Identity $user.SamAccountName -Confirm:$false -Server $selectedADServer
-                    $message = "A conta de usuário $($user.SamAccountName) foi excluída permanentemente."
+                    $message = "A conta de usuário $($user.SamAccountName) foi excluída permanentemente.Não foi localizada nenhuma solicitação para evitar a exclusão."
+                    $message | Set-Clipboard
                     [System.Windows.Forms.MessageBox]::Show($message, "Usuário Apagado", "OK", "Information")
                     Log-Action "Usuário $($user.SamAccountName) apagado no servidor $selectedADServer."
                 }
