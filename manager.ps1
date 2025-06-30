@@ -321,7 +321,8 @@ $buttonExecute_Gerenciar.Add_Click({
                 Log-Action "Usuário $usuario desativado no servidor $selectedADServer."
             }
             "Apagar Usuário" {
-                $user = Get-ADUser -Identity $usuario -Properties whenChanged, Enabled, DisplayName, SamAccountName -Server $selectedADServer
+                #$user = Get-ADUser -Identity $usuario -Properties whenChanged, Enabled, DisplayName, SamAccountName -Server $selectedADServer
+                $user = Get-ADUser -Filter "displayname -like '*${usuario}*'" -Properties * -Server $selectedADServer
                 if ($user.Enabled) {
                     [System.Windows.Forms.MessageBox]::Show("O usuário precisa estar desativado para ser apagado.", "Erro", "OK", "Error")
                     return
